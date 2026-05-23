@@ -466,6 +466,8 @@ const AboutSection = () => {
       </div>
     </section>
   );
+};
+
 export const LandingSections = ({ onSelectFood }: { onSelectFood?: (food: any) => void }) => {
   return (
     <>
