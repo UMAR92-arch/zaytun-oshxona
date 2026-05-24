@@ -90,6 +90,10 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
           }
         } catch (e) {
           console.error("Firebase load error:", e);
+          const localContent = localStorage.getItem('siteContent_v2');
+          if (localContent) setSiteContentState({ ...defaultContent, ...JSON.parse(localContent) });
+          const localFoods = localStorage.getItem('foods_v3');
+          if (localFoods) setFoodsState(JSON.parse(localFoods));
         }
       } else {
         const localContent = localStorage.getItem('siteContent_v2');
@@ -108,9 +112,8 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
       const db = getDb();
       if (db) {
         setDoc(doc(db, 'content', 'main'), newContent).catch(console.error);
-      } else {
-        localStorage.setItem('siteContent_v2', JSON.stringify(newContent));
       }
+      localStorage.setItem('siteContent_v2', JSON.stringify(newContent));
       
       return newContent;
     });
@@ -121,7 +124,7 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
       const newFoods = [food, ...prev];
       const db = getDb();
       if (db) setDoc(doc(db, 'foods', food.id.toString()), food).catch(console.error);
-      else localStorage.setItem('foods', JSON.stringify(newFoods));
+      localStorage.setItem('foods_v3', JSON.stringify(newFoods));
       return newFoods;
     });
   };
@@ -131,7 +134,7 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
       const newFoods = prev.map(f => f.id === food.id ? food : f);
       const db = getDb();
       if (db) setDoc(doc(db, 'foods', food.id.toString()), food).catch(console.error);
-      else localStorage.setItem('foods', JSON.stringify(newFoods));
+      localStorage.setItem('foods_v3', JSON.stringify(newFoods));
       return newFoods;
     });
   };
@@ -141,7 +144,7 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
       const newFoods = prev.filter(f => f.id !== id);
       const db = getDb();
       if (db) deleteDoc(doc(db, 'foods', id.toString())).catch(console.error);
-      else localStorage.setItem('foods', JSON.stringify(newFoods));
+      localStorage.setItem('foods_v3', JSON.stringify(newFoods));
       return newFoods;
     });
   };

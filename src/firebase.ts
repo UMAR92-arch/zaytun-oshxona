@@ -34,7 +34,8 @@ export const initFirebase = (config: any) => {
     if (typeof window !== 'undefined') {
       getAnalytics(app);
     }
-    return getFirestore(app);
+    // Ulanadigan bazani to'g'rilaymiz (firebase.json da ko'rsatilgan nom bo'yicha)
+    return getFirestore(app, "ai-studio-36ed9185-817f-4f6a-a2e3-31df3f85e4cf");
   } catch (e) {
     console.error("Firebase initialization error:", e);
     return null;

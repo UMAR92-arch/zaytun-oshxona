@@ -498,7 +498,7 @@ const MenuCard = ({ food, idx, onSelect }: { food: Food, idx: number, onSelect: 
           <img 
             src={food.image} 
             alt={food.name} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            className={`w-full h-full object-cover ${food.name.toLowerCase().includes('somsa') ? 'scale-[1.35] group-hover:scale-[1.45]' : 'group-hover:scale-110'} transition-transform duration-700 ease-out`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
           <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end pointer-events-none">
@@ -585,14 +585,14 @@ const FoodModal = ({ food, onClose, onContact, onSelectFood }: { food: Food, onC
           {/* Right Image */}
           <div className="hidden md:flex w-[45%] relative items-center justify-center pointer-events-none">
             <motion.div 
-              className="absolute right-[-20px] lg:right-[-40px] w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] z-20 pointer-events-auto"
+              className={`absolute right-[-20px] lg:right-[-40px] w-[350px] h-[350px] lg:w-[450px] lg:h-[450px] z-20 pointer-events-auto rounded-full overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] ${isDarkMode ? 'border-[6px] border-white/5' : 'border-[6px] border-white/50'}`}
               animate={{ rotate: 360 }}
               transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
             >
               <img 
                 src={food.image} 
                 alt={food.name} 
-                className={`w-full h-full object-cover rounded-full shadow-[0_30px_60px_rgba(0,0,0,0.4)] ${isDarkMode ? 'border-[6px] border-white/5' : 'border-[6px] border-white/50'}`}
+                className={`w-full h-full object-cover ${food.name.toLowerCase().includes('somsa') ? 'scale-[1.35]' : 'scale-105'}`}
               />
             </motion.div>
           </div>
@@ -602,12 +602,12 @@ const FoodModal = ({ food, onClose, onContact, onSelectFood }: { food: Food, onC
              <motion.div 
               animate={{ rotate: 360 }}
               transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
-              className="w-48 h-48"
+              className={`w-48 h-48 rounded-full overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.5)] border-[4px] ${isDarkMode ? 'border-white/10' : 'border-white/50'}`}
             >
               <img 
                 src={food.image} 
                 alt={food.name} 
-                className={`w-full h-full object-cover rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.5)] border-[4px] ${isDarkMode ? 'border-white/10' : 'border-white/50'}`}
+                className={`w-full h-full object-cover ${food.name.toLowerCase().includes('somsa') ? 'scale-[1.35]' : 'scale-105'}`}
               />
             </motion.div>
           </div>
@@ -625,7 +625,7 @@ const FoodModal = ({ food, onClose, onContact, onSelectFood }: { food: Food, onC
               >
                 {/* Pop out image */}
                 <div className="absolute -top-10 w-20 h-20 rounded-full shadow-md border-4 border-transparent overflow-hidden">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  <img src={item.image} alt={item.name} className={`w-full h-full object-cover ${item.name.toLowerCase().includes('somsa') ? 'scale-[1.35]' : 'scale-105'}`} />
                 </div>
                 <div className="mt-8 w-full">
                   <h4 className="font-bold text-xs md:text-sm line-clamp-1 mb-1">{item.name}</h4>
