@@ -672,7 +672,8 @@ const Footer = () => {
   const { isDarkMode, siteContent } = useSite();
 
   const handleMapClick = () => {
-    window.open('https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989', '_blank');
+    const url = siteContent.contactLocationUrl || 'https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989';
+    window.open(url, '_blank');
   };
 
   const currentYear = new Date().getFullYear();

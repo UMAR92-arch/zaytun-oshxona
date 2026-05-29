@@ -17,6 +17,7 @@ export interface SiteContent {
   contactTelegram: string;
   contactInstagram: string;
   contactYoutube: string;
+  contactLocationUrl: string;
 }
 
 interface SiteContextType {
@@ -55,6 +56,7 @@ const defaultContent: SiteContent = {
   contactTelegram: "https://t.me/AbroribnAbdulloh",
   contactInstagram: "https://instagram.com/zaytunfood",
   contactYoutube: "https://youtube.com/@zaytunfood",
+  contactLocationUrl: "https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989",
 };
 
 export const SiteProvider = ({ children }: { children: ReactNode }) => {
@@ -98,6 +100,10 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
         }
         if (data.contactPhone === "+998 90 123 45 67" || !data.contactPhone) {
           updatedData.contactPhone = "+998 99 517 29 95";
+          needsUpdate = true;
+        }
+        if (!data.contactLocationUrl || data.contactLocationUrl.includes('41.311081') || data.contactLocationUrl.includes('41.3271')) {
+          updatedData.contactLocationUrl = "https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989";
           needsUpdate = true;
         }
 

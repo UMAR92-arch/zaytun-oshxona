@@ -95,7 +95,7 @@ const ParticleSystem = () => {
 };
 
 const App = () => {
-  const { currentView, setCurrentView, isEditMode, setIsEditMode, isDarkMode, setIsDarkMode, favorites } = useSite();
+  const { currentView, setCurrentView, isEditMode, setIsEditMode, isDarkMode, setIsDarkMode, favorites, siteContent } = useSite();
   const [selectedFood, setSelectedFood] = useState<Food | null>(null);
   const [showFullMenu, setShowFullMenu] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
@@ -129,10 +129,7 @@ const App = () => {
   }
 
   const handleMapClick = () => {
-    const lat = 41.03616215120831;
-    const lng = 71.8642845596989;
-    // Try to open intent for maps if on mobile, else web
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    const url = siteContent.contactLocationUrl || `https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989`;
     window.open(url, '_blank');
   };
 
