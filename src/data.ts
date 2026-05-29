@@ -86,7 +86,7 @@ export const foods: Food[] = [
     name: "Bifshteks",
     description: "Yumshoq qilib qovurilgan lahm go'sht.",
     ingredients: "Mol go'shti, tuxum, qovurilgan kartoshka",
-    price: "40 000 UZS",
+    price: "25 000 UZS",
     rating: 4.7,
     image: "/images/bifshteks.jpg",
   },

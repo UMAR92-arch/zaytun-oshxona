@@ -2,13 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDuQeYL8PQ2X2BC2VNfrH7FCN7bV27RRWU",
-  authDomain: "oshxona-88675.firebaseapp.com",
-  projectId: "oshxona-88675",
-  storageBucket: "oshxona-88675.firebasestorage.app",
-  messagingSenderId: "977743914887",
-  appId: "1:977743914887:web:a9f5f4008c4a2a36109522",
-  measurementId: "G-E0W48N7TP3"
+  apiKey: "AIzaSyCzf5KJS52SA9sqTrDUibvW8OPbP6dq0Gg",
+  authDomain: "ytun-oshxona.firebaseapp.com",
+  projectId: "ytun-oshxona",
+  storageBucket: "ytun-oshxona.firebasestorage.app",
+  messagingSenderId: "887445619372",
+  appId: "1:887445619372:web:5f37ee176c54f4bdfa5509",
+  measurementId: "G-X0Z1BFH3KM"
 };
 
 const app = initializeApp(firebaseConfig);

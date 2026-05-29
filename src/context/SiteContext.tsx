@@ -49,7 +49,7 @@ const defaultContent: SiteContent = {
   heroSubtitle: "Yevropadagi №1 restoranning bosh oshpazi mualliflik retsepti asosida tayyorlangan",
   heroFeature1: "Har doim yangi masalliqlar",
   heroFeature2: "O'ziga xos ta'm",
-  mainButton: "BUYURTMA QILISH",
+  mainButton: "MENU",
   fullMenuTitle: "Barcha Taomlar",
   fullMenuSubtitle: "Bizning maxsus oshpazlarimiz tomonidan eng sara masalliqlardan tayyorlangan premium taomlar to'plami.",
   contactPhone: "+998 99 517 29 95",
