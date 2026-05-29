@@ -676,7 +676,7 @@ const Footer = () => {
   const { isDarkMode, siteContent } = useSite();
   
   const handleMapClick = () => {
-    window.open('https://maps.google.com/?q=41.311081,69.240562', '_blank');
+    window.open('https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989', '_blank');
   };
 
   const currentYear = new Date().getFullYear();
@@ -685,7 +685,7 @@ const Footer = () => {
   const instagramUrl = siteContent.contactInstagram || '#';
   const youtubeUrl = siteContent.contactYoutube || '#';
   const telegramUrl = siteContent.contactTelegram || '#';
-  const phoneNumber = siteContent.contactPhone || "+998 90 123 45 67";
+  const phoneNumber = siteContent.contactPhone || "+998 99 517 29 95";
 
   return (
     <footer className={`relative pt-12 pb-6 md:pt-20 md:pb-10 px-4 md:px-6 overflow-hidden border-t ${
@@ -843,7 +843,7 @@ const Footer = () => {
               </div>
               <div className="flex flex-col items-start overflow-hidden text-left">
                 <p className="text-[9px] md:text-[10px] tracking-widest uppercase opacity-60 font-bold mb-0.5 whitespace-nowrap">Manzilimiz</p>
-                <h5 className="text-[11px] md:text-sm font-bold leading-tight mb-0.5 md:mb-1 truncate w-full">Yunusobod tumani</h5>
+                <h5 className="text-[11px] md:text-sm font-bold leading-tight mb-0.5 md:mb-1 truncate w-full">Bizning joylashuvimiz</h5>
                 <span className="text-[9px] md:text-[10px] font-black uppercase text-orange-500 group-hover:translate-x-1 transition-transform flex items-center gap-1">
                   Xarita <ChevronRight className="w-3 h-3 md:w-3.5 md:h-3.5" />
                 </span>

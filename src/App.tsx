@@ -129,8 +129,8 @@ const App = () => {
   }
 
   const handleMapClick = () => {
-    const lat = 41.3271; // Predefined coordinates, could be moved to context
-    const lng = 69.2818;
+    const lat = 41.03616215120831;
+    const lng = 71.8642845596989;
     // Try to open intent for maps if on mobile, else web
     const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     window.open(url, '_blank');
