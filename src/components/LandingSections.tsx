@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useSite } from '../context/SiteContext';
-import { 
-  ChefHat, 
-  ShieldCheck, 
-  Star, 
-  MapPin, 
-  Phone, 
-  Instagram, 
-  Youtube, 
-  Send, 
-  Award, 
-  Users, 
-  Utensils, 
-  Sparkles, 
-  Clock, 
-  ChevronRight 
+import {
+  ChefHat,
+  ShieldCheck,
+  Star,
+  MapPin,
+  Phone,
+  Instagram,
+  Youtube,
+  Send,
+  Award,
+  Users,
+  Utensils,
+  Sparkles,
+  Clock,
+  ChevronRight
 } from 'lucide-react';
 
 const logoImg = '/images/2d27dbea-8d35-4e1f-84a1-d4027ac8a38e.png';
@@ -23,7 +23,7 @@ const logoImg = '/images/2d27dbea-8d35-4e1f-84a1-d4027ac8a38e.png';
 // 1. Interactive Hover Word
 const InteractiveWord = ({ children }: { children: string }) => {
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <motion.span
       className="relative inline-block cursor-pointer font-extrabold text-orange-500 whitespace-nowrap px-1"
@@ -79,11 +79,11 @@ const TiltCard = ({ children, isDarkMode }: { children: React.ReactNode, isDarkM
     const height = rect.height;
     const mouseX = e.clientX - rect.left - width / 2;
     const mouseY = e.clientY - rect.top - height / 2;
-    
+
     // Max tilt 8 degrees for elegant look
     const rX = -(mouseY / (height / 2)) * 8;
     const rY = (mouseX / (width / 2)) * 8;
-    
+
     setTilt({
       rotateX: rX,
       rotateY: rY,
@@ -111,15 +111,14 @@ const TiltCard = ({ children, isDarkMode }: { children: React.ReactNode, isDarkM
         }}
         transition={{ type: "spring", stiffness: 200, damping: 22 }}
         style={{ transformStyle: "preserve-3d" }}
-        className={`relative p-8 md:p-12 w-full rounded-[2.5rem] backdrop-blur-2xl border transition-all duration-300 ${
-          isDarkMode 
-            ? 'bg-black/30 border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.8)] shadow-orange-950/10' 
-            : 'bg-white/40 border-white/60 shadow-[0_20px_50px_rgba(249,115,22,0.1)] border-orange-500/10'
-        } ${isHovered ? 'animate-border-glow' : ''}`}
+        className={`relative p-8 md:p-12 w-full rounded-[2.5rem] backdrop-blur-2xl border transition-all duration-300 ${isDarkMode
+          ? 'bg-black/30 border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.8)] shadow-orange-950/10'
+          : 'bg-white/40 border-white/60 shadow-[0_20px_50px_rgba(249,115,22,0.1)] border-orange-500/10'
+          } ${isHovered ? 'animate-border-glow' : ''}`}
       >
         {/* Shine overlay */}
         {isHovered && (
-          <div 
+          <div
             className="absolute inset-0 rounded-[2.5rem] pointer-events-none opacity-30 mix-blend-overlay bg-gradient-to-br from-white/20 via-transparent to-black/20"
             style={{
               transform: `translate3d(${tilt.rotateY * 1.2}px, ${-tilt.rotateX * 1.2}px, 0px)`
@@ -167,11 +166,10 @@ const StatCard = ({ value, label, icon: Icon, isDarkMode }: { value: string, lab
       initial={{ opacity: 0, y: 35 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
       transition={{ duration: 0.6 }}
-      className={`flex flex-col items-center justify-center p-5 rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(249,115,22,0.15)] ${
-        isDarkMode 
-          ? 'bg-white/5 border-white/10 text-white' 
-          : 'bg-white/50 border-white/80 text-gray-800'
-      }`}
+      className={`flex flex-col items-center justify-center p-5 rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(249,115,22,0.15)] ${isDarkMode
+        ? 'bg-white/5 border-white/10 text-white'
+        : 'bg-white/50 border-white/80 text-gray-800'
+        }`}
     >
       <div className="p-3 rounded-2xl bg-gradient-to-br from-orange-500/20 to-yellow-500/10 text-orange-500 mb-3 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
         <Icon className="w-6 h-6 animate-pulse" />
@@ -194,7 +192,7 @@ const BackgroundText = ({ words }: { words: string[] }) => {
         const top = 10 + idx * 18;
         const left = 5 + (idx % 2 === 0 ? 5 : 55);
         const dir = idx % 2 === 0 ? 1 : -1;
-        
+
         return (
           <motion.div
             key={idx}
@@ -265,18 +263,18 @@ const BackgroundParticles = () => {
 };
 
 // 6. Interactive 3D Food Showcase Image Slideshow
-const TiltImage = ({ 
-  items, 
-  isDarkMode 
-}: { 
-  items: Array<{ image: string; name: string }>; 
-  isDarkMode: boolean; 
+const TiltImage = ({
+  items,
+  isDarkMode
+}: {
+  items: Array<{ image: string; name: string }>;
+  isDarkMode: boolean;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, x: 0, y: 0 });
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const validItems = items && items.length > 0 
+  const validItems = items && items.length > 0
     ? items.filter(item => item.image && item.image.trim() !== '')
     : [];
 
@@ -324,14 +322,14 @@ const TiltImage = ({
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative flex justify-center items-center p-6 md:p-10 perspective-1000 z-10 w-full"
     >
       <div className="absolute w-[260px] h-[260px] md:w-[420px] md:h-[420px] bg-gradient-to-r from-orange-500/10 to-yellow-500/10 rounded-full blur-[80px] pointer-events-none animate-pulse" />
-      
+
       <motion.div
         animate={{
           rotateX: tilt.rotateX,
@@ -343,18 +341,17 @@ const TiltImage = ({
         className="relative z-10"
         style={{ transformStyle: "preserve-3d" }}
       >
-        <div className={`relative w-[220px] h-[220px] md:w-[400px] md:h-[400px] rounded-full animate-float-slow select-none ${
-          isDarkMode 
-            ? 'shadow-[0_40px_80px_rgba(0,0,0,0.8)] border-[6px] md:border-[8px] border-white/5 bg-white/5' 
-            : 'shadow-[0_30px_60px_rgba(249,115,22,0.2)] border-[6px] md:border-[8px] border-white bg-white/50'
-        }`}>
-          
+        <div className={`relative w-[220px] h-[220px] md:w-[400px] md:h-[400px] rounded-full animate-float-slow select-none ${isDarkMode
+          ? 'shadow-[0_40px_80px_rgba(0,0,0,0.8)] border-[6px] md:border-[8px] border-white/5 bg-white/5'
+          : 'shadow-[0_30px_60px_rgba(249,115,22,0.2)] border-[6px] md:border-[8px] border-white bg-white/50'
+          }`}>
+
           <div className="absolute inset-0 rounded-full overflow-hidden">
             <AnimatePresence mode="popLayout">
-              <motion.img 
+              <motion.img
                 key={currentIndex}
-                src={currentItem.image} 
-                alt={currentItem.name} 
+                src={currentItem.image}
+                alt={currentItem.name}
                 initial={{ opacity: 0, scale: currentItem.name.toLowerCase().includes('somsa') ? 1.15 : 0.9, rotate: -3 }}
                 animate={{ opacity: 1, scale: currentItem.name.toLowerCase().includes('somsa') ? 1.35 : 1, rotate: 0 }}
                 exit={{ opacity: 0, scale: currentItem.name.toLowerCase().includes('somsa') ? 1.45 : 1.1, rotate: 3 }}
@@ -365,8 +362,8 @@ const TiltImage = ({
                 }}
               />
             </AnimatePresence>
-            
-            <div 
+
+            <div
               className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-transparent mix-blend-overlay"
               style={{ transform: "translateZ(15px)" }}
             />
@@ -375,7 +372,7 @@ const TiltImage = ({
           {/* Dynamic Food Name Badge outside overflow-hidden */}
           <div className="absolute -bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 z-20 w-max max-w-[95%]" style={{ transform: "translateZ(25px)" }}>
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={currentIndex}
                 initial={{ opacity: 0, y: 15, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -400,7 +397,7 @@ const AboutSection = () => {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative py-24 md:py-36 px-6 flex justify-center overflow-hidden w-full bg-gradient-to-b from-transparent via-orange-500/[0.02] to-transparent"
     >
@@ -412,9 +409,9 @@ const AboutSection = () => {
       <div className="absolute inset-0 bg-transparent animate-smoke pointer-events-none opacity-20 z-0 bg-radial-gradient" style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%)' }} />
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
+
         {/* Left Side: Text and Glass Card */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -451,15 +448,15 @@ const AboutSection = () => {
         </motion.div>
 
         {/* Right Side: Image Showcase */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 flex justify-center w-full"
         >
-          <TiltImage 
-            items={foods} 
-            isDarkMode={isDarkMode} 
+          <TiltImage
+            items={foods}
+            isDarkMode={isDarkMode}
           />
         </motion.div>
 
@@ -487,8 +484,8 @@ const ShowcaseSection = ({ onSelectFood }: { onSelectFood?: (food: any) => void 
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/10 blur-[120px] rounded-full pointer-events-none" />
-      
-      <motion.div 
+
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -500,13 +497,13 @@ const ShowcaseSection = ({ onSelectFood }: { onSelectFood?: (food: any) => void 
       </motion.div>
 
       <div className="relative w-full flex overflow-hidden group py-10 -my-10">
-        <motion.div 
+        <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
           className="flex gap-8 px-4 group-hover:[animation-play-state:paused] w-max"
         >
           {marqueeFoods.map((item, idx) => (
-            <div 
+            <div
               key={idx}
               onClick={() => onSelectFood?.(item)}
               className={`group/card cursor-pointer w-[260px] md:w-[320px] shrink-0 p-6 rounded-3xl backdrop-blur-md border transition-all duration-500 hover:scale-105 hover:-translate-y-4 shadow-xl ${isDarkMode ? 'bg-white/5 border-white/10 hover:shadow-[0_20px_40px_rgba(249,115,22,0.15)]' : 'bg-white/50 border-white/80 hover:shadow-[0_20px_40px_rgba(249,115,22,0.2)]'}`}
@@ -534,7 +531,7 @@ const TimelineSection = () => {
 
   return (
     <section className="relative py-24 md:py-32 px-6 flex flex-col items-center">
-      <motion.h2 
+      <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -548,7 +545,7 @@ const TimelineSection = () => {
         <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-orange-500/50 to-transparent blur-[1px]" />
 
         {steps.map((step, idx) => (
-          <motion.div 
+          <motion.div
             key={idx}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -592,7 +589,7 @@ const WhyUsSection = () => {
   ];
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative py-24 md:py-36 px-6 flex justify-center overflow-hidden w-full bg-gradient-to-b from-transparent via-orange-500/[0.01] to-transparent"
     >
@@ -602,22 +599,22 @@ const WhyUsSection = () => {
       <div className="absolute inset-0 bg-transparent animate-smoke pointer-events-none opacity-20 z-0 bg-radial-gradient" style={{ background: 'radial-gradient(circle, rgba(234,179,8,0.05) 0%, transparent 70%)' }} />
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
+
         {/* Left Side: Cinematic Showcase Image */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 order-2 lg:order-1 flex justify-center w-full"
         >
-          <TiltImage 
-            items={foods && foods.length > 0 ? [...foods].reverse() : []} 
-            isDarkMode={isDarkMode} 
+          <TiltImage
+            items={foods && foods.length > 0 ? [...foods].reverse() : []}
+            isDarkMode={isDarkMode}
           />
         </motion.div>
 
         {/* Right Side: Text details */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -649,11 +646,10 @@ const WhyUsSection = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.03 }}
-                  className={`flex items-center gap-3 p-4 rounded-2xl border backdrop-blur-md transition-all duration-300 ${
-                    isDarkMode 
-                      ? 'bg-white/5 border-white/10 hover:border-orange-500/30' 
-                      : 'bg-white/60 border-white/80 hover:border-orange-500/40 shadow-sm'
-                  }`}
+                  className={`flex items-center gap-3 p-4 rounded-2xl border backdrop-blur-md transition-all duration-300 ${isDarkMode
+                    ? 'bg-white/5 border-white/10 hover:border-orange-500/30'
+                    : 'bg-white/60 border-white/80 hover:border-orange-500/40 shadow-sm'
+                    }`}
                 >
                   <div className="p-2 rounded-xl bg-orange-500/10 text-orange-500 shadow-inner">
                     <Icon className="w-5 h-5" />
@@ -674,7 +670,7 @@ const WhyUsSection = () => {
 
 const Footer = () => {
   const { isDarkMode, siteContent } = useSite();
-  
+
   const handleMapClick = () => {
     window.open('https://www.google.com/maps/dir/?api=1&destination=41.03616215120831,71.8642845596989', '_blank');
   };
@@ -688,15 +684,14 @@ const Footer = () => {
   const phoneNumber = siteContent.contactPhone || "+998 99 517 29 95";
 
   return (
-    <footer className={`relative pt-12 pb-6 md:pt-20 md:pb-10 px-4 md:px-6 overflow-hidden border-t ${
-      isDarkMode 
-        ? 'border-white/10 bg-[#050505]' 
-        : 'border-black/5 bg-[#fdfaf2]'
-    }`}>
+    <footer className={`relative pt-12 pb-6 md:pt-20 md:pb-10 px-4 md:px-6 overflow-hidden border-t ${isDarkMode
+      ? 'border-white/10 bg-[#050505]'
+      : 'border-black/5 bg-[#fdfaf2]'
+      }`}>
       {/* Background Glows */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-80 bg-orange-500/5 blur-[120px] pointer-events-none z-0" />
       <div className="absolute top-0 right-1/4 w-[300px] h-[300px] bg-yellow-500/5 blur-[100px] pointer-events-none z-0" />
-      
+
       {/* Background branding text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 opacity-15">
         <motion.div
@@ -725,27 +720,25 @@ const Footer = () => {
       <BackgroundParticles />
 
       <div className="max-w-[1400px] mx-auto relative z-10 flex flex-col gap-8 md:gap-16">
-        
+
         {/* Main Smart Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 w-full items-center md:items-start text-center md:text-left">
-          
+
           {/* Column 1: Brand */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-3 lg:col-span-4 w-full">
             <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border-2 transition-all ${
-                isDarkMode 
-                  ? 'border-orange-500 bg-white/5 shadow-[0_0_20px_rgba(249,115,22,0.3)]' 
-                  : 'border-orange-500 bg-white shadow-md'
-              }`}>
+              <div className={`w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border-2 transition-all ${isDarkMode
+                ? 'border-orange-500 bg-white/5 shadow-[0_0_20px_rgba(249,115,22,0.3)]'
+                : 'border-orange-500 bg-white shadow-md'
+                }`}>
                 <img src={logoImg} alt="Zaytun Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-black text-xl md:text-2xl tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
                 Zaytun
               </span>
             </div>
-            <p className={`text-[11px] md:text-sm font-medium leading-relaxed max-w-[260px] md:max-w-[300px] mt-2 md:mt-1 ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}>
+            <p className={`text-[11px] md:text-sm font-medium leading-relaxed max-w-[260px] md:max-w-[300px] mt-2 md:mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'
+              }`}>
               An’anaviy ta’m va zamonaviy xizmat uyg‘unligi. Har bir luqmada haqiqiy sharqona mehmondo‘stlik.
             </p>
           </div>
@@ -756,11 +749,11 @@ const Footer = () => {
               Ijtimoiy tarmoqlar
             </h4>
             <div className="flex flex-row md:flex-col gap-4 md:gap-3 justify-center md:justify-start w-full">
-              
+
               {/* Instagram */}
-              <a 
-                href={instagramUrl} 
-                target="_blank" 
+              <a
+                href={instagramUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 relative py-1.5 md:w-auto"
               >
@@ -774,9 +767,9 @@ const Footer = () => {
               </a>
 
               {/* YouTube */}
-              <a 
-                href={youtubeUrl} 
-                target="_blank" 
+              <a
+                href={youtubeUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 relative py-1.5 md:w-auto"
               >
@@ -790,9 +783,9 @@ const Footer = () => {
               </a>
 
               {/* Telegram */}
-              <a 
-                href={telegramUrl} 
-                target="_blank" 
+              <a
+                href={telegramUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 group text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 relative py-1.5 md:w-auto"
               >
@@ -810,15 +803,14 @@ const Footer = () => {
 
           {/* Contact & Location */}
           <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 md:gap-4 w-full justify-center md:justify-start lg:justify-end items-center sm:items-stretch mt-4 md:mt-0">
-            
+
             {/* Contact Card */}
-            <a 
+            <a
               href={`tel:${phoneNumber.replace(/\s+/g, '')}`}
-              className={`flex items-center justify-center sm:justify-start gap-3 md:gap-4 p-3 md:p-5 rounded-2xl md:rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full max-w-[280px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-none group ${
-                isDarkMode 
-                  ? 'bg-white/5 border-white/10 hover:border-orange-500/40 hover:bg-white/10 shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.15)]' 
-                  : 'bg-white/60 border-white/80 hover:border-orange-500/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.2)]'
-              }`}
+              className={`flex items-center justify-center sm:justify-start gap-3 md:gap-4 p-3 md:p-5 rounded-2xl md:rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full max-w-[280px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-none group ${isDarkMode
+                ? 'bg-white/5 border-white/10 hover:border-orange-500/40 hover:bg-white/10 shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.15)]'
+                : 'bg-white/60 border-white/80 hover:border-orange-500/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.2)]'
+                }`}
             >
               <div className="p-2.5 md:p-3 rounded-xl md:rounded-2xl bg-gradient-to-br from-orange-500/20 to-yellow-500/10 text-orange-500 shadow-inner group-hover:scale-110 transition-transform flex-shrink-0">
                 <Phone className="w-4 h-4 md:w-5 md:h-5 animate-pulse" style={{ animationDuration: '3s' }} />
@@ -830,13 +822,12 @@ const Footer = () => {
             </a>
 
             {/* Location Card */}
-            <button 
+            <button
               onClick={handleMapClick}
-              className={`flex items-center justify-center sm:justify-start gap-3 md:gap-4 p-3 md:p-5 rounded-2xl md:rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full max-w-[280px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-none group text-left ${
-                isDarkMode 
-                  ? 'bg-white/5 border-white/10 hover:border-orange-500/40 hover:bg-white/10 shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.15)]' 
-                  : 'bg-white/60 border-white/80 hover:border-orange-500/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.2)]'
-              }`}
+              className={`flex items-center justify-center sm:justify-start gap-3 md:gap-4 p-3 md:p-5 rounded-2xl md:rounded-3xl backdrop-blur-xl border transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] w-full max-w-[280px] sm:max-w-[240px] md:max-w-[260px] lg:max-w-none group text-left ${isDarkMode
+                ? 'bg-white/5 border-white/10 hover:border-orange-500/40 hover:bg-white/10 shadow-[0_5px_15px_rgba(0,0,0,0.2)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.15)]'
+                : 'bg-white/60 border-white/80 hover:border-orange-500/50 shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_30px_rgba(249,115,22,0.2)]'
+                }`}
             >
               <div className="p-2.5 md:p-3 rounded-xl md:rounded-2xl bg-gradient-to-br from-orange-500/20 to-yellow-500/10 text-orange-500 shadow-inner group-hover:scale-110 transition-transform flex-shrink-0">
                 <MapPin className="w-4 h-4 md:w-5 md:h-5 animate-bounce" style={{ animationDuration: '3s' }} />
@@ -856,9 +847,8 @@ const Footer = () => {
         {/* Separator and copyright */}
         <div className="flex flex-col items-center gap-6 md:gap-8 border-t border-orange-500/10 pt-6 md:pt-10 mt-2 md:mt-0">
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent blur-[0.5px]" />
-          <p className={`text-[9px] md:text-xs font-bold tracking-widest uppercase opacity-50 text-center ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}>
+          <p className={`text-[9px] md:text-xs font-bold tracking-widest uppercase opacity-50 text-center ${isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>
             &copy; {currentYear} ZAYTUN RESTAURANT. BARCHA HUQUQLAR HIMOYA QILINGAN.
           </p>
         </div>

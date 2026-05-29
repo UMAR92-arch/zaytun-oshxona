@@ -73,7 +73,7 @@ export const SiteProvider = ({ children }: { children: ReactNode }) => {
 
     const localFavs = localStorage.getItem('favorites');
     if (localFavs) {
-      try { setFavorites(JSON.parse(localFavs)); } catch(e) {}
+      try { setFavorites(JSON.parse(localFavs)); } catch (e) { }
     }
 
     // Firebase Firestore dan real-time ma'lumot olish
